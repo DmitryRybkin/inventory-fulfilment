@@ -14,7 +14,7 @@ class Index implements HttpGetActionInterface
         private PageFactory $pageFactory
     ) {}
 
-    public function execute(): Page|ResultInterface|ResponseInterface
+    public function execute(): Page
     {
         $page = $this->pageFactory->create();
         $page->getConfig()->getTitle()->set(__("Shipping plan"));
