@@ -1,9 +1,9 @@
 <div class="sku-lookup">
     <form data-bind="submit: handleSubmit">
-        <h2>SKU Lookup</h2>
+        <h2 data-bind="i18n: 'SKU Lookup'"></h2>
         <input id="sku" name="sku" type="text" data-bind="textInput: sku, attr: { placeholder: placeholder }"/>
         <div data-bind="text: sku"></div>
-        <button type="submit">Confirm SKU</button>
+        <button type="submit"><!-- ko i18n: 'Confirm SKU' --><!-- /ko --></button>
     </form>
     <div data-bind="html: messageResponse"></div>
 </div>
