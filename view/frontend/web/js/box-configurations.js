@@ -22,13 +22,24 @@ define([
         defaults: {
             boxConfigurations: ko.observableArray([boxConfiguration()])
         },
+
         initialize() {
             this._super();
 
             console.log('The boxConfigurations component has been loaded.');
         },
+
         handleAdd() {
             this.boxConfigurations.push(boxConfiguration());
+        },
+
+        handleDelete(index) {
+            console.log('index', index)
+            this.boxConfigurations.splice(index, 1)
+        },
+
+        handleSubmit() {
+            console.log('Handle Submit')
         }
     });
 });
