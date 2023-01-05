@@ -1,26 +1,19 @@
 define([
     'uiComponent',
-    'ko'
+    'ko',
+    'MyCompany_InventoryFulfilment/js/model/box-configurations',
+    'jquery'
 ], function(
     Component,
-    ko
+    ko,
+    boxConfigurationsModel,
+    $
 ) {
     'use strict';
 
-    const boxConfiguration = () => {
-        return {
-            length: ko.observable(),
-            width: ko.observable(),
-            height: ko.observable(),
-            weight: ko.observable(),
-            unitsPerBox: ko.observable(),
-            numberOfBoxes: ko.observable(),
-        };
-    };
-
     return Component.extend({
         defaults: {
-            boxConfigurations: ko.observableArray([boxConfiguration()])
+            boxConfigurationsModel: boxConfigurationsModel
         },
 
         initialize() {
@@ -30,16 +23,21 @@ define([
         },
 
         handleAdd() {
-            this.boxConfigurations.push(boxConfiguration());
+            boxConfigurationsModel.add();
         },
 
         handleDelete(index) {
-            console.log('index', index)
-            this.boxConfigurations.splice(index, 1)
+            boxConfigurationsModel.delete(index);
         },
 
         handleSubmit() {
-            console.log('Handle Submit')
+            $('.box-configurations form input').removeAttr('aria-invalid');
+
+            if ($('.box-configurations form').valid()) {
+                console.log('Box configuration success.');
+            } else {
+                console.log('Box configuration error.');
+            }
         }
     });
 });
