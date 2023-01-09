@@ -1,41 +1,53 @@
-<div class="box-configurations">
-    <h2 data-bind="i18n: 'Box Configurations'"></h2>
-    <form data-bind="submit: handleSubmit">
-        <table>
-            <thead>
-            <tr>
-                <th data-bind="i18n: 'Units per box'"></th>
-                <th data-bind="i18n: 'Number of boxes'"></th>
-                <th data-bind="i18n: 'Box weight (lb.)'"></th>
-                <th data-bind="i18n: 'Box dimensions (in.)'"></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody data-bind="foreach: boxConfigurationsModel.boxConfigurations">
-            <tr>
-                <td>
-                    <input name="units_per_box" class="required-entry validate-greater-than-zero" type="number" data-bind="textInput: unitsPerBox"/>
-                </td>
-                <td>
-                    <input name="number_of_boxes" class="required-entry validate-greater-than-zero" type="number" data-bind="textInput: numberOfBoxes"/>
-                </td>
-                <td>
-                    <input name="weight" class="required-entry validate-greater-than-zero" type="number" data-bind="textInput: weight"/>
-                </td>
-                <td>
-                    <input name="length" class="required-entry validate-greater-than-zero" type="number" data-bind="textInput: length"/>
-                    x
-                    <input name="width" class="required-entry validate-greater-than-zero" type="number" data-bind="textInput: width"/>
-                    x
-                    <input name="height" class="required-entry validate-greater-than-zero" type="number" data-bind="textInput: height"/>
-                </td>
-                <td>
-                    <a class="action delete" data-bind="click: $parent.handleDelete.bind($parent, $index())"><!-- ko i18n: 'Delete' --><!-- /ko --></a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <button type="button" class="action" data-bind="click: handleAdd"><!-- ko i18n: 'Add box configuration' --><!-- /ko --></button>
-        <button type="submit" class="action primary" data-bind="click: handleSubmit"><!-- ko i18n: 'Confirm' --><!-- /ko --></button>
-    </form>
-</div>
+<!-- ko if: skuModel.isSuccess() -->
+    <div class="box-configurations">
+        <h2 data-bind="i18n: 'Box Configurations'"></h2>
+        <form data-bind="submit: handleSubmit">
+            <table>
+                <thead>
+                <tr>
+                    <th data-bind="i18n: 'Units per box'"></th>
+                    <th data-bind="i18n: 'Number of boxes'"></th>
+                    <th data-bind="i18n: 'Box weight (lb.)'"></th>
+                    <th data-bind="i18n: 'Box dimensions (in.)'"></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: boxConfigurationsModel.boxConfigurations">
+                <tr>
+                    <td>
+                        <input class="required-entry validate-greater-than-zero" type="number"
+                               data-bind="textInput: unitsPerBox, attr: { name: 'units_per_box_' + $index() }"/>
+                    </td>
+                    <td>
+                        <input class="required-entry validate-greater-than-zero" type="number"
+                               data-bind="textInput: numberOfBoxes, attr: { name: 'number_of_boxes_' + $index() }"/>
+                    </td>
+                    <td>
+                        <input class="required-entry validate-greater-than-zero" type="number"
+                               data-bind="textInput: weight, attr: { name: 'weight_' + $index() }"/>
+                    </td>
+                    <td>
+                        <input class="required-entry validate-greater-than-zero" type="number"
+                               data-bind="textInput: length, attr: { name: 'length_' + $index() }"/>
+                        x
+                        <input class="required-entry validate-greater-than-zero" type="number"
+                               data-bind="textInput: width, attr: { name: 'width_' + $index() }"/>
+                        x
+                        <input class="required-entry validate-greater-than-zero" type="number"
+                               data-bind="textInput: height, attr: { name: 'height_' + $index() }"/>
+                    </td>
+                    <td>
+                        <a class="action delete"
+                           data-bind="click: $parent.handleDelete.bind($parent, $index()), visible: $index() > 0">
+                            <!-- ko i18n: 'Delete' --><!-- /ko --></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="button" class="action" data-bind="click: handleAdd"><!-- ko i18n: 'Add box configuration' -->
+                <!-- /ko --></button>
+            <button type="submit" class="action primary" data-bind="click: handleSubmit"><!-- ko i18n: 'Confirm' -->
+                <!-- /ko --></button>
+        </form>
+    </div>
+<!-- /ko -->

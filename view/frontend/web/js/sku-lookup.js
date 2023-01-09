@@ -32,10 +32,11 @@ define([
 
             storage.get(`rest/V1/products/${this.sku()}`)
                 .done(response => {
-                    console.log(response);
+                    skuModel.isSuccess(true);
                     this.messageResponse($t('Product found! %1').replace('%1', `<strong>${response.name}</strong>`));
                 })
                 .fail(() => {
+                    skuModel.isSuccess(false);
                     this.messageResponse($t('Product not found.'));
                 })
         }

@@ -19,6 +19,12 @@
                                     <item name="template" xsi:type="string">MyCompany_InventoryFulfilment/box-configurations</item>
                                 </item>
                             </item>
+                            <item name="reviewSubmit" xsi:type="array">
+                                <item name="component" xsi:type="string">MyCompany_InventoryFulfilment/js/review-submit</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">MyCompany_InventoryFulfilment/review-submit</item>
+                                </item>
+                            </item>
                         </item>
                     </argument>
                 </arguments>

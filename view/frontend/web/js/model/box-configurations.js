@@ -36,9 +36,36 @@ define([
 
     return {
         boxConfigurations: ko.observableArray([boxConfiguration()]),
+        isSuccess: ko.observable(false),
+
+        numberOfBoxes: function() {
+            return ko.computed(() => {
+                return this.boxConfigurations().reduce(function(runningTotal, boxConfiguration) {
+                    return runningTotal + (boxConfiguration.numberOfBoxes() || 0);
+                }, 0);
+            })
+        },
+
+        shipmentWeight: function() {
+            return ko.computed(() => {
+                return this.boxConfigurations().reduce(function(runningTotal, boxConfiguration) {
+                    return runningTotal + (boxConfiguration.weight() || 0);
+                }, 0);
+            })
+        },
+
+        billableWeight: function() {
+            return ko.computed(() => {
+                return this.boxConfigurations().reduce(function(runningTotal, boxConfiguration) {
+                    return runningTotal + (boxConfiguration.billableWeight() || 0);
+                }, 0);
+            })
+        },
+
         add: function() {
             this.boxConfigurations.push(boxConfiguration());
         },
+
         delete: function(index) {
             this.boxConfigurations.splice(index, 1);
         }

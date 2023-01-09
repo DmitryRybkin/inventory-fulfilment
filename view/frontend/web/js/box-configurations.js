@@ -2,18 +2,21 @@ define([
     'uiComponent',
     'ko',
     'MyCompany_InventoryFulfilment/js/model/box-configurations',
+    'MyCompany_InventoryFulfilment/js/model/sku',
     'jquery'
 ], function(
     Component,
     ko,
     boxConfigurationsModel,
+    skuModel,
     $
 ) {
     'use strict';
 
     return Component.extend({
         defaults: {
-            boxConfigurationsModel: boxConfigurationsModel
+            boxConfigurationsModel: boxConfigurationsModel,
+            skuModel: skuModel
         },
 
         initialize() {
@@ -34,9 +37,9 @@ define([
             $('.box-configurations form input').removeAttr('aria-invalid');
 
             if ($('.box-configurations form').valid()) {
-                console.log('Box configuration success.');
+                boxConfigurationsModel.isSuccess(true);
             } else {
-                console.log('Box configuration error.');
+                boxConfigurationsModel.isSuccess(false);
             }
         }
     });
